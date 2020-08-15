@@ -7,7 +7,6 @@ import re
 # dictonary.com url 
 dic_url = 'https://www.dictionary.com/browse/' 
 
-
 # thesaurus.com url
 thesa_url = 'https://www.thesaurus.com/browse/'
 

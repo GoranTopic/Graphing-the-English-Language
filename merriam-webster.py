@@ -1,19 +1,37 @@
-#!/usr/bin/python
-
-# sent a query for a word to the dictonary.com 
+# sent a query for a word to the www.merriam-webster.com 
 
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup
 import re
 
-# dictonary.com url 
-dic_url = 'https://www.dictionary.com/browse/' 
 
-# thesaurus.com url
-thesa_url = 'https://www.thesaurus.com/browse/'
+# dictionary api 
+API_url_dictionary  = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
+
+API_key_dictionary = "?key=401b3951-f31a-474e-a13e-66fc0d46de0f"
+
+# thesauarus api 
+API_url_thesaurus  = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/"
+
+API_key_thesaurus = "?key=c7bd68ed-a9c2-47a5-92fc-5764ed7092a4"
 
 
-def request_webpage(url):
+def query_word_API(word):
+    '''queries a word to www.merriam-webster.com API and retuns a dic 
+       with the sintaxes definitions and synonyms and pronunciation '''  
+
+        url = API_url_dictionary + word + API_key_dictionary
+
+    try:
+        
+        json_data = request_webpage(url)
+        print(json)
+    except:
+    
+
+
+
+def request_json(url):
     '''request a web page '''
     try:
         return urlopen(url)
@@ -85,43 +103,4 @@ def get_synonyms(soup):
         print("could not get synonyms")
         return None
         
-
-def query_word(word):
-    '''queries a word to dictionary.com and retuns a dic 
-       with the sintaxes definitions and synonyms and pronunciation '''  
-    url = dic_url + word
-
-    try:
-        page_html = request_webpage(url)
-        # make soup....hmmm yummi =) lxml to make it fast 
-        soup = BeautifulSoup( page_html, 'lxml' )
-        # find the section of the word
-        soup = soup.find('div', class_='css-1urpfgu')
-
-        # get word
-        word_name = get_word(soup)
-
-        # get pronunciation 
-        pronunciation = get_pronunciation(soup)
-
-        # get word syntax defintion
-        definitions = get_syntaxes_and_defintions(soup)
-
-        # change to thesaurus webpage
-        thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
-        page_html = request_webpage(thesaurus_link)
-        soup = BeautifulSoup( page_html, 'lxml' )
-
-        # get synonyms 
-        synonyms = get_synonyms(soup)
-
-        # make a dictionary data of the word
-        word_data = { 'word' : word_name, 'pronunciation': pronunciation , 'definitions': definitions, 'synonyms': synonyms }
-       
-        # return word data
-        return word_data
-    except:
-        print("could not get word: " + word)
-        return None
-
 

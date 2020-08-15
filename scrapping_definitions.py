@@ -27,10 +27,8 @@ destination_json_file = "dictionary.json"
 
 
 def start_crawling():
-    
     dest_file = open(destination_json_file, 'w')
     word_list_file = open(word_list_filename, 'r')
-
     for word in word_list_file:
         # get definition
         definition = dictionarydotcom.query_word(word)
@@ -41,7 +39,18 @@ def start_crawling():
             json.dump(definition, dest_file, ensure_ascii=False, indent=4)
         else:
             exit()
+    word_list_file.close()
+    dest_file.close()
+    
+def crawl():
+    dest_file = open(destination_json_file, 'w')
+    word_list_file = open(word_list_filename, 'r')
 
-    word_file.close()
 
-start_crawling()
+    word = word_list_file.readline()
+    print(word, end='')
+
+    word_list_file.close()
+    dest_file.close()
+
+crawl()
