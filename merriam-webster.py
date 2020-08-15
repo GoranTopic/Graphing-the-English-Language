@@ -87,7 +87,7 @@ def get_synonyms(soup):
         
 
 def query_word(word):
-   '''queries a word to dictionary.com and retuns a dic 
+    '''queries a word to dictionary.com and retuns a dic 
        with the sintaxes definitions and synonyms and pronunciation '''  
     url = dic_url + word
 
@@ -107,21 +107,21 @@ def query_word(word):
         # get word syntax defintion
         definitions = get_syntaxes_and_defintions(soup)
 
-       # change to thesaurus webpage
-       thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
-       page_html = request_webpage(thesaurus_link)
-       soup = BeautifulSoup( page_html, 'lxml' )
+        # change to thesaurus webpage
+        thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
+        page_html = request_webpage(thesaurus_link)
+        soup = BeautifulSoup( page_html, 'lxml' )
 
-       # get synonyms 
-       synonyms = get_synonyms(soup)
+        # get synonyms 
+        synonyms = get_synonyms(soup)
 
-       # make a dictionary data of the word
-       word_data = { 'word' : word_name, 'pronunciation': pronunciation , 'definitions': definitions, 'synonyms': synonyms }
+        # make a dictionary data of the word
+        word_data = { 'word' : word_name, 'pronunciation': pronunciation , 'definitions': definitions, 'synonyms': synonyms }
        
-       # return word data
-       return word_data
-   except:
-       print("could not get word: " + word)
-       return None
+        # return word data
+        return word_data
+    except:
+        print("could not get word: " + word)
+        return None
 
 
