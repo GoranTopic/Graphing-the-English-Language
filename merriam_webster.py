@@ -7,27 +7,24 @@ import re
 
 # dictionary api 
 API_url_dictionary  = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
-
 API_key_dictionary = "?key=401b3951-f31a-474e-a13e-66fc0d46de0f"
 
 # thesauarus api 
 API_url_thesaurus  = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/"
-
 API_key_thesaurus = "?key=c7bd68ed-a9c2-47a5-92fc-5764ed7092a4"
 
 
 def query_word_API(word):
     '''queries a word to www.merriam-webster.com API and retuns a dic 
        with the sintaxes definitions and synonyms and pronunciation '''  
+    word = word.rstrip()
 
-        url = API_url_dictionary + word + API_key_dictionary
-
-    try:
+    url = API_url_dictionary + word + API_key_dictionary
+    print("quering: " + url )
         
-        json_data = request_webpage(url)
-        print(json)
-    except:
-    
+    json_data = urlopen(url)
+    print(json_data)
+        
 
 
 

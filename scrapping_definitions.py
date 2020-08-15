@@ -18,6 +18,7 @@ import re
 import os
 import json
 import dictionarydotcom
+import merriam_webster
 
 # word list file
 word_list_filename = 'The_Economist_GRE_word_list.txt'
@@ -48,7 +49,9 @@ def crawl():
 
 
     word = word_list_file.readline()
-    print(word, end='')
+    definition = merriam_webster.query_word_API(word)
+    print(definition, end='')
+    
 
     word_list_file.close()
     dest_file.close()
