@@ -49,104 +49,106 @@ def request_webpage(url):
 
 
 def get_word(soup):
-    '''gets a the word from a given html suop '''
+    '''gets a the word from a given html soup '''
     # get word 
     try:
-        word = soup.find('h1', class_='css-1jzk4d9').contents[0]
-        return word
+        word = soup.find('h1', class_='hword')
+        return word.string
     except:
         print("could not get the word")
         return None
 
 
-def get_pronunciation(soup):
-    '''gets a the pronunciation for a word from a given html suop '''
-    pronunciation = ''
+def get_pronunciations(soup):
+    '''gets a the pronunciation for a word from a given html soup '''
     try:
-        spell_content = soup.find('span', class_='pron-spell-content') 
-        for span in spell_content.descendants:
-            if not re.match("^<.*>$", span.__str__()):
-                pronunciation += span
-        return pronunciation
+        pronunciations = soup.find_all('span', class_='pr') 
+        return [ pronunciation.string for pronunciation in pronunciations ]
     except:
         print("could not get pronunciation value")
         return None
 
-def get_syntaxes_and_defintions(soup):
-    '''gets a the syntax and definitions for a word from a given html suop '''
+def get_definitions(soup):
+    '''gets a the syntax and definitions for a word from a given html soup '''
     # get syntaxes 
-    syntaxes = {}
+    definitions = {}
     try:
-        luna_pos = soup.find_all('section', class_='css-pnw38j e1hk9ate0') 
-        for luna in luna_pos:
-            # get current syntax
-            current_syntax = luna.find('span', class_="luna-pos").contents[0]
-            # initialize that given syntax as an empty list
-            syntaxes[current_syntax] = []
-            for definitions in luna.find_all('span', class_="one-click-content css-1p89gle e1q3nk1v4"):
-                for definition in definitions:
-                    # if it mathec a nomal definion
-                    if re.match("^(?!<|Usually|\. | +|\(|\))[^\n]*(?<!>)$", definition.__str__()):
-                        # set definition into the list of defintion for that given syntax of the word
-                        syntaxes[current_syntax].append(definition)
-        return syntaxes
+        syntaxes = soup.find_all('span', class_="fl")
+        definition_divs = soup.find_all('div', id=re.compile("dictionary\-entry\-[1-9]"))
+        for num in range(0, len(definition_divs)):
+            definitions[syntaxes[num].string] = [] 
+            definition_tags = definition_divs[num].find_all('span', class_="dtText")
+            for tag in definition_tags:    
+                definitions[syntaxes[num].string].append([string for string in tag.stripped_strings][1])
+        return definitions
     except:
-        print("could not get syntax and definiion")
+        print("could not get definitions")
         return None
-
 
 def get_synonyms(soup):
     # get synonyms
+
     synonyms = []
     try:
-        synonyms_tags = soup.find('div', class_='css-191l5o0-ClassicContentCard e1qo4u830')
-        synonyms_tags = synonyms_tags.find_all('span', class_='css-1y6i96q-WordGridItemBox etbu2a32')
-        for tag in synonyms_tags:
-            if tag.a is not None:
-                synonyms.append(tag.a.string)
-            elif tag.span is not None:
-                synonyms.append(tag.span.string)
-        return synonyms
+        synonym_label = soup.find('div', id='synonyms-anchor').find_all('p', class_="function-label")
+        for label in synonym_label:
+            if re.match('^Synonym.*$', label.string):
+                print([ string for string in label.next_sibling.strings] )
     except:
         print("could not get synonyms")
         return None
-        
+
+def scrap_webpage(word):
+    '''Query a word using the webpage''' 
+    url = dic_url + word
+    
+    page_html = request_webpage(url)
+    soup = BeautifulSoup(page_html, 'lxml' )
+
+    # get word
+    word_name = get_word(soup)
+    print(word_name)
+    # get pronunciation 
+    pronunciations = get_pronunciations(soup)
+    # get word syntax defintion
+    definitions = get_definitions(soup)
+
+    # get synonyms 
+    synonyms = get_synonyms(soup)
+
+    # change to thesaurus webpage
+    #thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
+    #page_html = request_webpage(thesaurus_link)
+    #soup = BeautifulSoup( page_html, 'lxml' )
+
+
+    # make a dictionary data of the word
+    word_data = {   'word' : word_name, 
+                    'pronunciation': pronunciations, 
+                    'definitions': definitions, 
+                    'synonyms': synonyms }
+    # return data
+    return word_data
+       
 
 def query_word(word):
     '''queries a word to dictionary.com and retuns a dic 
        with the sintaxes definitions and synonyms and pronunciation '''  
     word = word.rstrip()
-    url = dic_url + word
+    
+    # Try to query word with API
+    #definition = query_API(word)
+    # if got positive result
+    #if definition is not None:
+        # fix json format
+        #return result
+    
+    # try to get word from webpage
+    defintion = scrap_webpage(word)    
+    if defintion is not None:
+        return defintion
 
-    try:
-        page_html = request_webpage(url)
-        # make soup....hmmm yummi =) lxml to make it fast 
-        soup = BeautifulSoup( page_html, 'lxml' )
-        # find the section of the word
-        soup = soup.find('div', class_='css-1urpfgu')
-
-        # get word
-        word_name = get_word(soup)
-
-        # get pronunciation 
-        pronunciation = get_pronunciation(soup)
-        # get word syntax defintion
-        definitions = get_syntaxes_and_defintions(soup)
-
-        # change to thesaurus webpage
-        thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
-        page_html = request_webpage(thesaurus_link)
-        soup = BeautifulSoup( page_html, 'lxml' )
-
-        # get synonyms 
-        synonyms = get_synonyms(soup)
-
-        # make a dictionary data of the word
-        word_data = { 'word' : word_name, 'pronunciation': pronunciation , 'definitions': definitions, 'synonyms': synonyms }
-        # return word data
-        return word_data
-    except:
-        print("could not get word: " + word)
-        return None
+    print("could not get definition")
+    return None
 
 

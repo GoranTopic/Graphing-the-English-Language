@@ -1,9 +1,9 @@
 
 class Word:
-    def __init__(self, word, pronunciation = '', syntax_def = {}):
+    def __init__(self, word, pronunciation = [], definitions = {}):
         self.word = word
-        self.pronunciation = pronunciation
-        self.synta_def = syntax_def 
+        self.pronunciations = prounications
+        self.definitions = definitions
         self.notes = []
         
 
