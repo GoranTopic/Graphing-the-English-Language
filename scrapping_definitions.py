@@ -26,7 +26,6 @@ word_list_filename = 'The_Economist_GRE_word_list.txt'
 destination_json_file = "dictionary.json"
 
 
-
 def start_crawling():
     dest_file = open(destination_json_file, 'w')
     word_list_file = open(word_list_filename, 'r')
@@ -47,12 +46,9 @@ def crawl():
     dest_file = open(destination_json_file, 'w')
     word_list_file = open(word_list_filename, 'r')
 
-
     word = word_list_file.readline()
-    definition = merriam_webster.query_word_API(word)
-    print(definition, end='')
+    definition = merriam_webster.query_word(word)
     
-
     word_list_file.close()
     dest_file.close()
 

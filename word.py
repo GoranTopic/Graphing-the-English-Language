@@ -4,6 +4,8 @@ class Word:
         self.word = word
         self.pronunciation = pronunciation
         self.synta_def = syntax_def 
+        self.notes = []
+        
 
     def __str__(self):
         return self.word
