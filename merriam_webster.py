@@ -19,11 +19,15 @@ API_key_dictionary = "?key=401b3951-f31a-474e-a13e-66fc0d46de0f"
 API_url_thesaurus  = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/"
 API_key_thesaurus = "?key=c7bd68ed-a9c2-47a5-92fc-5764ed7092a4"
 
-
-
-
-
-
+class bcolors:
+        HEADER = '\033[95m'
+        OKBLUE = '\033[94m'
+        OKGREEN = '\033[92m'
+        WARNING = '\033[93m'
+        FAIL = '\033[91m'
+        ENDC = '\033[0m'
+        BOLD = '\033[1m'
+        UNDERLINE = '\033[4m'
 
 def query_API(word):
     '''queries a word to www.merriam-webster.com API and retuns a dic 
@@ -31,20 +35,18 @@ def query_API(word):
     word = word.rstrip()
 
     url = API_url_dictionary + word + API_key_dictionary
-    print("quering: " + url )
         
     json_data = urlopen(url)
-    print(json_data)
         
 
-
-
-def request_webpage(url):
+def request_soup(url):
     '''request a web page '''
     try:
-        return urlopen(url)
+        page_html =  urlopen(url)
+        soup = BeautifulSoup(page_html, 'lxml' )
+        return soup
     except:
-        print("could not connet to internet")
+        print(f"{bcolors.FAIL}Could connet to merriam-webster.com{bcolors.ENDC}")
         return None
 
 
@@ -53,9 +55,9 @@ def get_word(soup):
     # get word 
     try:
         word = soup.find('h1', class_='hword')
-        return word.string
+        return word.string.rstrip()
     except:
-        print("could not get the word")
+        print(f"{bcolors.FAIL}Could not get word{bcolors.ENDC}")
         return None
 
 
@@ -63,9 +65,9 @@ def get_pronunciations(soup):
     '''gets a the pronunciation for a word from a given html soup '''
     try:
         pronunciations = soup.find_all('span', class_='pr') 
-        return [ pronunciation.string for pronunciation in pronunciations ]
+        return [ pronunciation.string.rstrip() for pronunciation in pronunciations ]
     except:
-        print("could not get pronunciation value")
+        print(f"{bcolors.WARNING}Could not get pronunciation{bcolors.ENDC}")
         return None
 
 def get_definitions(soup):
@@ -79,10 +81,10 @@ def get_definitions(soup):
             definitions[syntaxes[num].string] = [] 
             definition_tags = definition_divs[num].find_all('span', class_="dtText")
             for tag in definition_tags:    
-                definitions[syntaxes[num].string].append([string for string in tag.stripped_strings][1])
+                definitions[syntaxes[num].string].append([string.rstrip() for string in tag.stripped_strings][1])
         return definitions
     except:
-        print("could not get definitions")
+        print(f"{bcolors.FAIL}Could not get definition{bcolors.ENDC}")
         return None
 
 def get_synonyms(soup):
@@ -95,7 +97,7 @@ def get_synonyms(soup):
                 synonyms.extend([synonym_tag.string for synonym_tag in label.next_sibling.find_all('a')])
         return synonyms
     except:
-        print("could not get synonyms")
+        print(f"{bcolors.WARNING}Could not get synonyms{bcolors.ENDC}")
         return None
 
 def get_antoyms(soup):
@@ -108,19 +110,18 @@ def get_antoyms(soup):
                 antonyms.extend([antonym_tag.string for antonym_tag in label.next_sibling.find_all('a')])
         return antonyms
     except:
-        print("could not get antonyms")
+        print(f"{bcolors.WARNING}Could not get antonyms{bcolors.ENDC}")
         return None
 
 def scrap_webpage(word):
     '''Query a word using the webpage''' 
     url = dic_url + word
     
-    page_html = request_webpage(url)
-    soup = BeautifulSoup(page_html, 'lxml' )
+    soup = request_soup(url)
+
 
     # get word
     word_name = get_word(soup)
-    print(word_name)
     # get pronunciation 
     pronunciations = get_pronunciations(soup)
     # get word syntax defintion
@@ -132,20 +133,22 @@ def scrap_webpage(word):
     antonyms = get_antoyms(soup)
 
     # make a dictionary data of the word
-    word_data = {   'word' : word_name, 
-                    'pronunciation': pronunciations, 
-                    'definitions': definitions, 
-                    'synonyms': synonyms,
-                    'antonyms': antonyms }
-    # return data
-    return word_data
+    if word_name is None or definitions is None:
+        return None
+    else:
+        word_data = { 'word' : word_name, 
+                'pronunciation': pronunciations, 
+                'definitions': definitions, 
+                'synonyms': synonyms,
+                'antonyms': antonyms }
+        # return data
+        return word_data
        
 
 def query_word(word):
     '''queries a word to dictionary.com and retuns a dic 
        with the sintaxes definitions and synonyms and pronunciation '''  
     word = word.rstrip()
-    
     # Try to query word with API
     #definition = query_API(word)
     # if got positive result
