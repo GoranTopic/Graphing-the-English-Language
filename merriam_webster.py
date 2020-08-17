@@ -131,12 +131,6 @@ def scrap_webpage(word):
     # get anyonyms
     antonyms = get_antoyms(soup)
 
-    # change to thesaurus webpage
-    #thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
-    #page_html = request_webpage(thesaurus_link)
-    #soup = BeautifulSoup( page_html, 'lxml' )
-
-
     # make a dictionary data of the word
     word_data = {   'word' : word_name, 
                     'pronunciation': pronunciations, 
@@ -158,13 +152,13 @@ def query_word(word):
     #if definition is not None:
         # fix json format
         #return result
-    
     # try to get word from webpage
     defintion = scrap_webpage(word)    
+
     if defintion is not None:
         return defintion
-
-    print("could not get definition")
-    return None
+    else:
+        print("could not get definition")
+        return None
 
 
