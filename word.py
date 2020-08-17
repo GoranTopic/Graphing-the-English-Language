@@ -1,6 +1,11 @@
 
 class Word:
-    def __init__(self, word, pronunciation = [], definitions = {}):
+    def __init__(self, word,
+            pronunciation = [], 
+            definitions = {},
+            synonyms = [],
+            antonyms = [],
+            ):
         self.word = word
         self.pronunciations = prounications
         self.definitions = definitions

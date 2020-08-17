@@ -86,16 +86,29 @@ def get_definitions(soup):
         return None
 
 def get_synonyms(soup):
-    # get synonyms
-
+    ''' get the synomyms of the web page '''
     synonyms = []
     try:
         synonym_label = soup.find('div', id='synonyms-anchor').find_all('p', class_="function-label")
         for label in synonym_label:
             if re.match('^Synonym.*$', label.string):
-                print([ string for string in label.next_sibling.strings] )
+                synonyms.extend([synonym_tag.string for synonym_tag in label.next_sibling.find_all('a')])
+        return synonyms
     except:
         print("could not get synonyms")
+        return None
+
+def get_antoyms(soup):
+    ''' get the antonyms of the web page '''
+    antonyms = []
+    try:
+        synonym_label = soup.find('div', id='synonyms-anchor').find_all('p', class_="function-label")
+        for label in synonym_label:
+            if re.match('^Antonym.*$', label.string):
+                antonyms.extend([antonym_tag.string for antonym_tag in label.next_sibling.find_all('a')])
+        return antonyms
+    except:
+        print("could not get antonyms")
         return None
 
 def scrap_webpage(word):
@@ -115,6 +128,8 @@ def scrap_webpage(word):
 
     # get synonyms 
     synonyms = get_synonyms(soup)
+    # get anyonyms
+    antonyms = get_antoyms(soup)
 
     # change to thesaurus webpage
     #thesaurus_link = soup.find('a', class_='css-1pfx2g8 e12fnee32')['href']
@@ -126,7 +141,8 @@ def scrap_webpage(word):
     word_data = {   'word' : word_name, 
                     'pronunciation': pronunciations, 
                     'definitions': definitions, 
-                    'synonyms': synonyms }
+                    'synonyms': synonyms,
+                    'antonyms': antonyms }
     # return data
     return word_data
        
