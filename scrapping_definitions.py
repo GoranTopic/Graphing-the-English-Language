@@ -5,17 +5,12 @@
 #   istahd of having to do online html requests, which take time
 #   by Goran Topic
 
-from word import Word
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup
-from multiprocessing import Queue
 import networkx as nx
-import pickle
-import datetime
-import random
-import collections
 import re
 import os
+import sys
 import json
 import dictionarydotcom
 import merriam_webster
@@ -26,6 +21,8 @@ word_list_filename = 'The_Economist_GRE_word_list.txt'
 destination_json_file = "dictionary.json"
 # line number file
 current_line_filename = "current_line_number.txt"
+# line number file
+error_word_file = "errored_words.txt"
 
 def get_line_number():
     try:
@@ -42,6 +39,15 @@ def save_line_number(number):
         line_number_file.write(str(number))
     except IOError:
         print("Could not save line number:" + str(number))
+
+def save_error_word(word):
+    try:
+        error_file = open(error_word_file, 'a')
+        error_file.write(word)
+    except IOError:
+        print("could not save error word: " + word )
+    finally:
+        error_file.close()
 
 def get_definition(word):
     '''tries to get a definition from diffrent web dictionaries including merriam webster and dictionary.com'''
@@ -76,17 +82,21 @@ def start_crawling():
                 json.dump(definition, dest_file, ensure_ascii=False, indent=4)
                 cur_line = num
             else:
+                save_error_word(word)
                 save_line_number(cur_line)
-                exit()
+    os.remove(current_line_filename) 
     word_list_file.close()
     dest_file.close()
     
-def crawl_once():
+def crawl_once(word=None):
     dest_file = open(destination_json_file, 'w')
     word_list_file = open(word_list_filename, 'r')
-    word = word_list_file.readline()
+    if word is None:
+        word = word_list_file.readline()
     definition = merriam_webster.query_word(word)
+    print(definition)
     word_list_file.close()
     dest_file.close()
 
 start_crawling()
+#crawl_once('Tout')

@@ -65,7 +65,9 @@ def get_pronunciations(soup):
     '''gets a the pronunciation for a word from a given html soup '''
     try:
         pronunciations = soup.find_all('span', class_='pr') 
-        return [ pronunciation.string.rstrip() for pronunciation in pronunciations ]
+        #clean the children
+
+        return [ pronunciation.get_text().rstrip() for pronunciation in pronunciations ]
     except:
         print(f"{bcolors.WARNING}Could not get pronunciation{bcolors.ENDC}")
         return None
@@ -133,6 +135,7 @@ def scrap_webpage(word):
     antonyms = get_antoyms(soup)
 
     # make a dictionary data of the word
+    # if we where unable to get word of definitions then return None
     if word_name is None or definitions is None:
         return None
     else:
