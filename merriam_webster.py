@@ -83,7 +83,12 @@ def get_definitions(soup):
             definitions[syntaxes[num].string] = [] 
             definition_tags = definition_divs[num].find_all('span', class_="dtText")
             for tag in definition_tags:    
-                definitions[syntaxes[num].string].append([string.rstrip() for string in tag.stripped_strings][1])
+                # clean the example tag so it does not appear in the definition
+                [examples.clear() for examples in tag.find_all('span', class_='ex-sent')]
+                # clean the colon tag so it does not appear in the definition
+                [examples.clear() for examples in tag.find_all('strong', class_='mw_t_bc')]
+                # save string defintions
+                definitions[syntaxes[num].string].append([string.rstrip() for string in tag.stripped_strings][0])
         return definitions
     except:
         print(f"{bcolors.FAIL}Could not get definition{bcolors.ENDC}")
@@ -118,9 +123,7 @@ def get_antoyms(soup):
 def scrap_webpage(word):
     '''Query a word using the webpage''' 
     url = dic_url + word
-    
     soup = request_soup(url)
-
 
     # get word
     word_name = get_word(soup)
@@ -136,7 +139,9 @@ def scrap_webpage(word):
 
     # make a dictionary data of the word
     # if we where unable to get word of definitions then return None
-    if word_name is None or definitions is None:
+    if word_name is None:
+        return None
+    elif definitions is None:
         return None
     else:
         word_data = { 'word' : word_name, 

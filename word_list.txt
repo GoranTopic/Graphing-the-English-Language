@@ -370099,3 +370099,386 @@ zwinglianist
 zwitter
 zwitterion
 zwitterionic
+{
+    "word": "incumbent",
+    "pronunciation": [
+        " in-ˈkəm-bənt",
+        " in-ˈkəm-bənt",
+        " in-ˈkəm-bənt"
+    ],
+    "definitions": {
+        "noun": [
+            "the holder of an office or",
+            "one that occupies a particular position or place"
+        ],
+        "adjective": [
+            "imposed",
+            "having the status of an incumbent (see",
+            "occupying a specified office",
+            "lying or resting on something else",
+            "bent over so as to rest on or touch an underlying surface"
+        ]
+    },
+    "synonyms": [
+        "compulsory",
+        "forced",
+        "imperative",
+        "involuntary",
+        "mandatory",
+        "necessary",
+        "nonelective",
+        "obligatory",
+        "peremptory",
+        "required"
+    ],
+    "antonyms": [
+        "elective",
+        "optional",
+        "voluntary"
+    ]
+}{
+    "word": "paradigm",
+    "pronunciation": [
+        " ˈper-ə-ˌdīm",
+        " ˈpa-rə-",
+        " also  -ˌdim"
+    ],
+    "definitions": {
+        "noun": [
+            "example",
+            "an outstandingly clear or typical example or",
+            "an example of a",
+            "a philosophical and theoretical framework of a scientific school or discipline within which theories, laws, and generalizations and the experiments performed in support of them are formulated",
+            "a philosophical or theoretical framework of any kind"
+        ]
+    },
+    "synonyms": null,
+    "antonyms": null
+}{
+    "word": "atone",
+    "pronunciation": [
+        " ə-ˈtōn",
+        " ə-ˈtōn"
+    ],
+    "definitions": {
+        "verb": [
+            "to make amends",
+            "to make reparation or supply satisfaction for",
+            "reconcile"
+        ]
+    },
+    "synonyms": null,
+    "antonyms": null
+}{
+    "word": "suffice",
+    "pronunciation": [
+        " sə-ˈfīs",
+        " also  -ˈfīz",
+        " sə-ˈfīs"
+    ],
+    "definitions": {
+        "verb": [
+            "to meet or satisfy a need",
+            "to be competent or capable",
+            "to be enough for"
+        ]
+    },
+    "synonyms": [
+        "do",
+        "serve"
+    ],
+    "antonyms": []
+}{
+    "word": "truce",
+    "pronunciation": [
+        " ˈtrüs",
+        " ˈtrüs"
+    ],
+    "definitions": {
+        "noun": [
+            "a suspension of fighting especially of considerable duration by agreement of opposing forces",
+            "a respite especially from a disagreeable or painful state or action"
+        ],
+        "verb": [
+            "to make a truce",
+            "to end with a truce"
+        ]
+    },
+    "synonyms": [
+        "armistice",
+        "cease-fire"
+    ],
+    "antonyms": []
+}{
+    "word": "dynamo",
+    "pronunciation": [
+        " ˈdī-nə-ˌmō",
+        " ˈdī-nə-ˌmō"
+    ],
+    "definitions": {
+        "noun": [
+            "generator",
+            "a forceful energetic individual"
+        ]
+    },
+    "synonyms": [
+        "fireball",
+        "live wire",
+        "pistol"
+    ],
+    "antonyms": []
+}{
+    "word": "clamor",
+    "pronunciation": [
+        " ˈkla-mər",
+        " ˈkla-mər"
+    ],
+    "definitions": {
+        "noun": [
+            "noisy shouting",
+            "a loud continuous noise",
+            "insistent public expression (as of support or protest)"
+        ],
+        "verb (1)": [
+            "to make a din (see",
+            "to become loudly insistent",
+            "to utter or proclaim insistently and noisily",
+            "to influence by means of"
+        ],
+        "verb (2)": [
+            "silence"
+        ]
+    },
+    "synonyms": [
+        "howl",
+        "hubbub",
+        "hue and cry",
+        "hullabaloo",
+        "noise",
+        "outcry",
+        "roar",
+        "tumult",
+        "uproar",
+        "vociferation"
+    ],
+    "antonyms": []
+}{
+    "word": "burgeon",
+    "pronunciation": [
+        " ˈbər-jən"
+    ],
+    "definitions": {
+        "verb": [
+            "to send forth new growth (such as buds or branches)",
+            "bloom",
+            "to grow and expand rapidly"
+        ]
+    },
+    "synonyms": [
+        "accelerate",
+        "accumulate",
+        "appreciate",
+        "balloon",
+        "boom",
+        "build up",
+        "climb",
+        "enlarge",
+        "escalate",
+        "expand",
+        "gain",
+        "increase",
+        "mount",
+        "multiply",
+        "mushroom",
+        "proliferate",
+        "rise",
+        "roll up",
+        "snowball",
+        "spread",
+        "swell",
+        "wax"
+    ],
+    "antonyms": [
+        "contract",
+        "decrease",
+        "diminish",
+        "dwindle",
+        "lessen",
+        "recede",
+        "wane"
+    ]
+}{
+    "word": "suffocating",
+    "pronunciation": [
+        " ˈsə-fə-ˌkā-tiŋ"
+    ],
+    "definitions": {
+        "adjective": [
+            "tending or serving to"
+        ]
+    },
+    "synonyms": [
+        "breathless",
+        "close",
+        "stifling",
+        "stuffy"
+    ],
+    "antonyms": [
+        "airy",
+        "breezy",
+        "unstuffy"
+    ]
+}{
+    "word": "divulge",
+    "pronunciation": [
+        " də-ˈvəlj",
+        " dī-",
+        " də-ˈvəlj",
+        " dī-"
+    ],
+    "definitions": {
+        "verb": [
+            "to make known (something, such as a confidence or secret)",
+            "to make public"
+        ]
+    },
+    "synonyms": [
+        "bare",
+        "disclose",
+        "discover",
+        "expose",
+        "let on (about)",
+        "reveal",
+        "spill",
+        "tell",
+        "unbosom",
+        "uncloak",
+        "uncover",
+        "unmask",
+        "unveil"
+    ],
+    "antonyms": [
+        "cloak",
+        "conceal",
+        "cover (up)",
+        "enshroud",
+        "hide",
+        "mask",
+        "shroud",
+        "veil"
+    ]
+}{
+    "word": "impiety",
+    "pronunciation": [
+        " (ˌ)im-ˈpī-ə-tē"
+    ],
+    "definitions": {
+        "noun": [
+            "the quality or state of being",
+            "an impious act"
+        ]
+    },
+    "synonyms": [
+        "blasphemy",
+        "defilement",
+        "desecration",
+        "irreverence",
+        "profanation",
+        "sacrilege"
+    ],
+    "antonyms": [
+        "adoration",
+        "glorification",
+        "worship"
+    ]
+}{
+    "word": "chisel",
+    "pronunciation": [
+        " ˈchi-zᵊl",
+        " ˈchi-zəl",
+        " ˈchiz-əl"
+    ],
+    "definitions": {
+        "noun": [
+            "a metal tool with a sharpened edge at one end used to chip, carve, or cut into a solid material (such as wood, stone, or metal)"
+        ],
+        "verb": [
+            "to cut or work with or as if with a chisel",
+            "to employ shrewd or unfair practices on in order to obtain one's end",
+            "to obtain by such practices",
+            "to work with or as if with a chisel",
+            "to employ shrewd or unfair practices",
+            "to thrust oneself"
+        ]
+    },
+    "synonyms": [
+        "beat",
+        "bilk",
+        "bleed",
+        "cheat",
+        "chouse",
+        "con",
+        "cozen",
+        "defraud",
+        "diddle",
+        "do",
+        "do in",
+        "euchre",
+        "fiddle",
+        "fleece",
+        "flimflam",
+        "gaff",
+        "gyp",
+        "hose",
+        "hustle",
+        "mulct",
+        "nobble",
+        "pluck",
+        "ream",
+        "rip off",
+        "rook",
+        "screw",
+        "shake down",
+        "short",
+        "shortchange",
+        "skin",
+        "skunk",
+        "squeeze",
+        "stick",
+        "stiff",
+        "sting",
+        "sucker",
+        "swindle",
+        "thimblerig",
+        "victimize"
+    ],
+    "antonyms": []
+}{
+    "word": "trite",
+    "pronunciation": [
+        " ˈtrīt",
+        " ˈtrīt"
+    ],
+    "definitions": {
+        "adjective": [
+            "hackneyed"
+        ]
+    },
+    "synonyms": [
+        "banal",
+        "cliché",
+        "cliche",
+        "clichéd",
+        "cobwebby",
+        "commonplace",
+        "hack",
+        "hackney",
+        "hackneyed",
+        "moth-eaten",
+        "musty",
+        "obligatory",
+        "shopworn",
+        "stale",
+        "stereotyped",
+        "threadbare",
+        "timeworn"

@@ -66,8 +66,11 @@ def get_definition(word):
 
 
 def start_crawling():
-    dest_file = open(destination_json_file, 'a')
-    word_list_file = open(word_list_filename, 'r')
+    if sys.argv[1] is not None:
+        word_list_file = open(str(sys.argv[1]), 'r')
+    else:
+        word_list_file = open(word_list_filename, 'r')
+    dest_file = open(destination_json_file, 'w')
     cur_line = get_line_number()
     
     for num, word in enumerate(word_list_file):
@@ -89,7 +92,7 @@ def start_crawling():
     dest_file.close()
     
 def crawl_once(word=None):
-    dest_file = open(destination_json_file, 'w')
+    dest_file = open(destination_json_file, 'a')
     word_list_file = open(word_list_filename, 'r')
     if word is None:
         word = word_list_file.readline()
@@ -97,6 +100,8 @@ def crawl_once(word=None):
     print(definition)
     word_list_file.close()
     dest_file.close()
+
+
 
 start_crawling()
 #crawl_once('Tout')
