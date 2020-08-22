@@ -15,14 +15,22 @@ import json
 import dictionarydotcom
 import merriam_webster
 
-# word list file
-word_list_filename = 'The_Economist_GRE_word_list.txt'
-# destination file 
-destination_json_file = "dictionary.json"
-# line number file
-current_line_filename = "current_line_number.txt"
-# line number file
-error_word_file = "errored_words.txt"
+
+class Scrapy_the_word_scrapper:
+
+    # destination file 
+    destination_json_file = "dictionary.json"
+    # line number file
+    current_line_filename = ".line_number.txt"
+    # line number file
+    error_word_file = "errored_words.txt"
+
+
+
+
+
+def save_linenumber_and_filename():
+
 
 def get_line_number():
     try:
