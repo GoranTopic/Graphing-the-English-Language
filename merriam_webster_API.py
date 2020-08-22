@@ -3,6 +3,7 @@
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup
 import re
+import bcolors
 
 class merriam_webster_api()
     # www.merrian-webster.com url 
@@ -18,7 +19,9 @@ class merriam_webster_api()
     # html soup for it
     soup = None
     # word queried
-    soup = None
+    word = None
+    # word data
+    word_data = None
 
     def query_API(self, word):
         '''queries a word to www.merriam-webster.com API and retuns a dic 
@@ -63,6 +66,11 @@ class merriam_webster_api()
         except:
             print(f"{bcolors.FAIL}Could not get word{bcolors.ENDC}")
             return None
+
+    def abort(self):
+        '''abort print error and exit '''
+        print(f"{bcolors.FAIL}Aborting{bcolors.ENDC}")
+        return None
 
 
     def get_pronunciations(self, soup):
@@ -123,38 +131,35 @@ class merriam_webster_api()
             print(f"{bcolors.WARNING}Could not get antonyms{bcolors.ENDC}")
             return None
 
-    def srap_webpage(self, word):
+    def query_webpage(self, word):
         '''Query a word using the webpage''' 
-        url = dic_url + word
+        self.url = self.dic_url + word
+        html = self.request_html(self.soup)
+        return None if html is None
+
         soup = request_soup(url)
+        return None if soup is None
 
         # get word
-        word_name = get_word(soup)
+        word_name = self.get_word(soup)
         # get pronunciation 
-        pronunciations = get_pronunciations(soup)
+        pronunciations = self.get_pronunciations(soup)
         # get word syntax defintion
-        definitions = get_definitions(soup)
+        definitions = self.get_definitions(soup)
+        return None if definitions is None
 
         # get synonyms 
-        synonyms = get_synonyms(soup)
+        synonyms = self.get_synonyms(soup)
         # get anyonyms
-        antonyms = get_antoyms(soup)
+        antonyms = self.get_antoyms(soup)
 
         # make a dictionary data of the word
         # if we where unable to get word of definitions then return None
-        if word_name is None:
-            return None
-        elif definitions is None:
-            return None
-        else:
-            word_data = {'word' : word_name, 
-                         'pronunciation': pronunciations, 
-                         'definitions': definitions, 
-                         'synonyms': synonyms,
-                         'antonyms': antonyms }
-            # return data
-            return word_data
-       
+        return {'word' : word_name, 
+                'pronunciation': pronunciations, 
+                'definitions': definitions, 
+                'synonyms': synonyms,
+                'antonyms': antonyms }
 
     def query_word(self, word):
         '''queries a word to dictionary.com and retuns a dic 
@@ -167,11 +172,7 @@ class merriam_webster_api()
             # fix json format
         #return result
         # try to get word from webpage
-        defintion = self.scrap_webpage(word)    
+        self.word_data = self.scrap_webpage(word)    
+        return self.abort() if self.word_data is None
 
-        if defintion is not None:
-            return defintion
-        else:
-            print("could not get definition")
-            return None
 

@@ -1,9 +1,6 @@
-#!/usr/bin/python
+#  This is Scrappy the scrapper for anything that you want to scrap
+#
 
-#   a program to scrap an store the whole wikipedia vertex and edges,
-#   so that an ofline program can find the shortes path on this data
-#   istahd of having to do online html requests, which take time
-#   by Goran Topic
 
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup
