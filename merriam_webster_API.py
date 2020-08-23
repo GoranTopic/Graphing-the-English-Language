@@ -1,5 +1,4 @@
 # sent a query for a word to the www.merriam-webster.com 
-
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup
 import re
@@ -174,5 +173,3 @@ class merriam_webster_api()
         # try to get word from webpage
         self.word_data = self.scrap_webpage(word)    
         return self.abort() if self.word_data is None
-
-
