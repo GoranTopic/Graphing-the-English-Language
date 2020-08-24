@@ -17,20 +17,19 @@ import sys
 import json
 import dictionarydotcom
 import merriam_webster
-
-def listening_to_input():
-
-
-
+import queue
 
 class Scrappy_web_scrapper:
+    # Queue of places to visit
+    
     # destination file 
     destination_json_file = "dictionary.json"
     # line number file
     current_line_filename = ".line_number.txt"
     # line number file
     error_word_file = "errored_words.txt"
-    number = None
+    visited = None
+        
 
 
     def save_and_panic(self):
@@ -119,3 +118,9 @@ def crawl_once(word=None):
 
 #start_crawling()
 #crawl_once('Tout')
+
+
+def start(self):
+
+
+scrappy.crawl_next()
