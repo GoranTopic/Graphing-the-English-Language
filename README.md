@@ -22,7 +22,7 @@ I would give us the ability to see the way the meaning sifts as we get follow th
 
 Well, this I exactly what I did.
 
-## Behold the graph of all English words:
+#### Behold the graph of all English words:
 
 ![english language graph](Untitled.png)
 
@@ -33,3 +33,6 @@ If you take your time to peruse the image you would find that a lot of the words
 
 This clusters would often connect with each other with one word. 
 
+This are some of the clusters that I have found:
+
+![](assets/Untitled.png)
