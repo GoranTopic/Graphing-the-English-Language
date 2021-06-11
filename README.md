@@ -2,16 +2,34 @@
 
 ## About
 
-This porject started as a scarpping project which later turn into a search to understand language better.
-If every word is connected to other word in meaning, such as synonyms. Then: 
+This project originally started as a scrapping challenge which later turn into a search to understand language better. 
 
-- Are all word connect to each other? 
-- Is are there som words that are so far removed that we cant find a path bewteen them?
-- Is there a way to start from one word and reach it's antonym only by traverzing it synonyms? 
+As I was, scrapping dictionaries for word and their definitions, I notices that every word had synonyms; Words that are very close in meaning.
 
-All of there question led me to see if I could make a complete graph o the english laguage on one file
+Then I occurred to me. 
 
-And here it is: 
+Can we think of all of the English language as set of words in a graph connected by their meaning to each other? 
 
+Would every word be connected?
+
+If so, words that are farther apart in meaning to each other would be have a longer paths.
+
+While word that are interchangeable or very close in meaning will have a shorter path.
+
+If we could graph all of the words in the English language and connected them by meaning this would give us the ability not only to know if two word are synonyms, but how far away are they to each other.
+
+I would give us the ability to see the way the meaning sifts as we get follow th path from one word to an other. 
+
+Well, this I exactly what I did.
+
+## Behold the graph of all English words:
 
 ![english language graph](Untitled.png)
+
+
+## Clusters 
+
+If you take your time to peruse the image you would find that a lot of the words are segregated in clusters.
+
+This clusters would often connect with each other with one word. 
+
