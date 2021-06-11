@@ -27,6 +27,7 @@ Well, this I exactly what I did.
 ![english language graph](Untitled.png)
 
 
+
 ## Clusters 
 
 If you take your time to peruse the image you would find that a lot of the words are segregated in clusters.
@@ -35,4 +36,21 @@ This clusters would often connect with each other with one word.
 
 This are some of the clusters that I have found:
 
-![](assets/Untitled.png)
+> The Isles of Crazy
+!['the isles of crazy.png'](assets/the\ isles\ of\ crazy.png)
+
+> The Isles of Stupid
+!['the isles of stupid.png'](assets/the\ isles\ of\ stupid.png)
+
+
+> The Isles of Sad
+!['the isles of sad.png'](assets/the\ isles\ of\ sad.png)
+
+
+## Details
+
+This graph was made with gephi program which you can download from their website ![gephi](https://gephi.org/)
+
+The Scrapping of the word form online dictionaries was made with ![beautiful soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
+
+enjoy :shipit:

@@ -40,9 +40,6 @@ class Scrappy_web_scrapper:
         print("Could not save line number:" + str(self.number))
 
 
-
-
-
 def get_line_number():
     try:
         line_number_file = open(current_line_filename, 'r')
