@@ -24,7 +24,7 @@ Well, this I exactly what I did.
 
 #### Behold the graph of all English words:
 
-![english language graph](Untitled.png)
+![english language graph](assets/Words_Graph.png)
 
 
 
@@ -37,13 +37,16 @@ This clusters would often connect with each other with one word.
 This are some of the clusters that I have found:
 
 > The Isles of Crazy
-!['the isles of crazy.png'](assets/the\ isles\ of\ crazy.png)
+
+![the isles of crazy.png](assets/the isles of crazy.png)
 
 > The Isles of Stupid
+
 !['the isles of stupid.png'](assets/the\ isles\ of\ stupid.png)
 
 
 > The Isles of Sad
+
 !['the isles of sad.png'](assets/the\ isles\ of\ sad.png)
 
 
