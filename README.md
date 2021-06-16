@@ -57,5 +57,8 @@ This graph was made with gephi program which you can download from their website
 
 The Scrapping of the word form online dictionaries was made with ![beautiful soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
 
-enjoy :shipit:
+As Always yours, 
+
+Goran Topic :shipit:
+
 
